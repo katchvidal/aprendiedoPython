@@ -1,7 +1,7 @@
 #   Importaciones de Paquetes Flask
 from flask import Flask, jsonify, request, Response
 from flask import render_template
-from flask_pymongo import PyMongo
+from flask_pymongo import PyMongo, ObjectId
 from decouple import config
 from werkzeug.security import generate_password_hash
 from bson import json_util
@@ -31,7 +31,7 @@ def create_user():
         response = {
             "username" : username,
             "password" : has_pass,
-            "email" : email
+            "email" : email,
         }
         back = json_util.dumps(response)
         return Response(back, mimetype="application/json")
